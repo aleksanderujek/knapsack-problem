@@ -9,6 +9,10 @@ class Population:
         for i in range(population_size):
             self.individuals[i] = Individual(number_of_elements)
 
-    def get_best(self, cost_list, weight_list, max_weight):
-        self.best = max(self.individuals, key = lambda x: x.calculate_fitness(cost_list,weight_list,max_weight))
+    def calculate_fitness(self, cost_list,weight_list,max_weight):
+        for individual in self.individuals:
+            individual.calculate_fitness(cost_list,weight_list, max_weight)
+
+    def get_best(self):
+        self.best = max(self.individuals, key = lambda x: x.fitness)
         return self.best
