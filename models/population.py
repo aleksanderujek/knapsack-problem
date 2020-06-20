@@ -4,10 +4,11 @@ from models.individual import Individual
 class Population:
     individuals = []
     best = []
-    def __init__(self,population_size,number_of_elements):
-        self.individuals = np.empty(population_size, dtype=object)
-        for i in range(population_size):
-            self.individuals[i] = Individual(number_of_elements)
+    def __init__(self,population_size,number_of_elements = None):
+        if (population_size is not None and number_of_elements is not None):
+            self.individuals = np.empty(population_size, dtype=object)
+            for i in range(population_size):
+                self.individuals[i] = Individual(number_of_elements)
 
     def calculate_fitness(self, cost_list,weight_list,max_weight):
         for individual in self.individuals:

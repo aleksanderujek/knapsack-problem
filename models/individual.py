@@ -6,7 +6,8 @@ class Individual:
     weight = 0
 
     def __init__(self, n):
-        self.knapsack = np.random.choice([False, True], size=n)
+        if (n is not None):
+            self.knapsack = np.random.choice([False, True], size=n)
         
     def num_of_elements(self):
         return np.sum(self.knapsack)

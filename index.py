@@ -1,6 +1,7 @@
 from models.individual import Individual
 from models.population import Population
 from selections.selection import selection
+from crossovers.crossover import crossover
 import numpy as np
 
 newIndividual = Individual(10)
@@ -27,5 +28,11 @@ print("================================")
 
 
 selections = selection(population, 0)
-for i, element in enumerate(selections):
+for i, element in enumerate(selections.individuals):
     print("{0} TABLE: {1}  NUM_OF_ELEMENTS: {2} FITNESS: {3} WEIGHT: {4}").format(i, element.knapsack, element.num_of_elements(), element.fitness, element.weight)
+
+crossovers = crossover(selections)
+
+for i, element in enumerate(crossovers.individuals):
+    print("{0} TABLE: {1}  NUM_OF_ELEMENTS: {2} FITNESS: {3} WEIGHT: {4}").format(i, element.knapsack, element.num_of_elements(), element.calculate_fitness(cost_list,weight_list, max_weight)
+, element.weight)
