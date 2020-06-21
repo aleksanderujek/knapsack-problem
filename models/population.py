@@ -11,8 +11,11 @@ class Population:
                 self.individuals[i] = Individual(number_of_elements)
 
     def calculate_fitness(self, cost_list,weight_list,max_weight):
-        for individual in self.individuals:
-            individual.calculate_fitness(cost_list,weight_list, max_weight)
+        shape = self.individuals.shape[0]
+        fitness = np.empty(shape, dtype=int)
+        for i in range(shape):
+            fitness[i] = self.individuals[i].calculate_fitness(cost_list,weight_list, max_weight)
+        return fitness
 
     def get_best(self):
         self.best = max(self.individuals, key = lambda x: x.fitness)
