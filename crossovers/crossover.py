@@ -8,5 +8,4 @@ def crossover(population, crossover_ratio = 0.70):
     newPopulation.individuals = np.empty(shape=shape, dtype=object)
     for i in range(shape):
         newPopulation.individuals[i] = one_point_crossover(population.individuals[i],population.individuals[(i+1)%(shape-1)])
-    print(newPopulation.individuals)
     return newPopulation
