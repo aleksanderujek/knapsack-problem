@@ -13,8 +13,8 @@ newIndividual = Individual(num_of_elements)
 cost_list = np.full(num_of_elements, [10,15,20,6,3,23,7,11,1,5])
 weight_list = np.full(num_of_elements, [10,14,15,3,1,13,3,12,1,10])
 max_weight = 40
-population_size = 50
-generations = 10000
+population_size = 200
+generations = 1000
 
 population = Population(population_size,num_of_elements)
 
@@ -30,16 +30,22 @@ def cycle(population, cost_list, weight_list, max_weight, crossover_ratio, mutat
 fitness_history = np.empty((generations,population_size), dtype=int)
 
 best = Individual(None)
+best_generation = 0
 
 for i in tqdm(range(generations)):
-    population, fitness, currentBest = cycle(population, cost_list, weight_list, max_weight, 0.9, 0.4, i,(generations*3)/4)
+    population, fitness, currentBest = cycle(population, cost_list, weight_list, max_weight, 0.9, 0.6, i,(generations*3)/4)
     if (currentBest.fitness > best.fitness):
         best = currentBest
+        best_generation = i
     fitness_history[i] = fitness
 
 
 print("================================")
-print("Best: {0}, NUM_OF_ELEMENTS: {1} FITNESS: {2} WEIGHT: {3}".format(best.knapsack, best.num_of_elements(), best.fitness, best.weight))
+print("Best found at \33[93m{0}\x1b[0m generation".format(best_generation))
+print("Fitness: \33[92m{0}\x1b[0m".format(best.fitness))
+print("Knapsack: \33[94m{0}\x1b[0m".format(best.knapsack))
+print("Number of elements in knapsack: \33[90m{0}\x1b[0m".format(best.num_of_elements()))
+print("Knapsack weight: \33[91m{0}\x1b[0m".format(best.weight))
 print("================================")
 
 
