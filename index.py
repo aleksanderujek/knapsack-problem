@@ -29,17 +29,13 @@ def cycle(population, cost_list, weight_list, max_weight, crossover_ratio, mutat
 
 fitness_history = np.empty((generations,population_size), dtype=int)
 
-
-
 for i in tqdm(range(generations)):
     population, fitness = cycle(population, cost_list, weight_list, max_weight, 0.9, 0.7, i,(generations*3)/4)
     fitness_history[i] = fitness
 
-population.calculate_fitness(cost_list, weight_list, max_weight)
-for i, element in enumerate(population.individuals):
-    print("{0} TABLE: {1}  NUM_OF_ELEMENTS: {2} FITNESS: {3} WEIGHT: {4}".format(i, element.knapsack, element.num_of_elements(), element.fitness, element.weight))
 
 print("================================")
+population.calculate_fitness(cost_list, weight_list, max_weight)
 best = population.get_best()
 print("Best: {0}, NUM_OF_ELEMENTS: {1} FITNESS: {2} WEIGHT: {3}".format(best.knapsack, best.num_of_elements(), best.fitness, best.weight))
 print("================================")
