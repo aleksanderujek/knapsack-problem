@@ -3,11 +3,11 @@ from selections.tournament import tournament
 from selections.roulette import roulette
 from models.population import Population
 
-def selection(population, iteration, k = 3):
+def selection(population, iteration, breakPoint = 50, k = 3):
     shape = population.individuals.shape[0]
     new_population = Population(None)
     new_population.individuals = np.empty(shape=shape, dtype=object)
-    if (iteration < 50):
+    if (iteration < breakPoint):
         for i in range(shape):
             new_population.individuals[i] = roulette(population)
     else:
