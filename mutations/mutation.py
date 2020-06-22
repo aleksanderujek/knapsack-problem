@@ -1,5 +1,6 @@
 from random import random
 from mutations.bit_flip_mutation import bit_flip_mutation
+from mutations.inversion_mutation import inversion_mutation
 
 def mutation(population, mutationRate=0.05):
     for individual in population.individuals:
