@@ -7,10 +7,6 @@ def selection(population, iteration, breakPoint = 50, k = 3):
     shape = population.individuals.shape[0]
     new_population = Population(None)
     new_population.individuals = np.empty(shape=shape, dtype=object)
-    if (iteration < breakPoint):
-        for i in range(shape):
-            new_population.individuals[i] = roulette(population)
-    else:
-        for i in range(shape):
-            new_population.individuals[i] = tournament(population)
+    for i in range(shape):
+        new_population.individuals[i] = roulette(population) if (iteration < breakPoint) else tournament(population)
     return new_population
